@@ -33,8 +33,8 @@
                                         <div class="float-end">
                                             <i class="ri-eye-line widget-icon"></i>
                                         </div>
-                                        <h6 class="text-uppercase mt-0" title="Customers">Daily Visits</h6>
-                                        <h2 class="my-2">8,652</h2>
+                                        <h6 class="text-uppercase mt-0" title="Customers">Online kullanıcı Sayısı</h6>
+                                        <h2 class="my-2" id="onlineUsers"></h2>
                                         <p class="mb-0">
                                             <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
                                             <span class="text-nowrap">Since last month</span>
@@ -49,8 +49,8 @@
                                         <div class="float-end">
                                             <i class="ri-wallet-2-line widget-icon"></i>
                                         </div>
-                                        <h6 class="text-uppercase mt-0" title="Customers">Revenue</h6>
-                                        <h2 class="my-2">$9,254.62</h2>
+                                        <h6 class="text-uppercase mt-0" title="Customers">Toplam Ziyaretçi Sayısı</h6>
+                                        <h2 class="my-2" id="totalVisits"></h2>
                                         <p class="mb-0">
                                             <span class="badge bg-white bg-opacity-10 me-1">18.25%</span>
                                             <span class="text-nowrap">Since last month</span>
@@ -210,7 +210,7 @@
                                                     <ul class="conversation-list">
                                                         <li class="clearfix">
                                                             <div class="chat-avatar">
-                                                                <img src="assets/images/users/avatar-5.jpg" alt="male">
+                                                                <img src="/static/assets/images/users/avatar-5.jpg" alt="male">
                                                                 <i>10:00</i>
                                                             </div>
                                                             <div class="conversation-text">
@@ -224,7 +224,7 @@
                                                         </li>
                                                         <li class="clearfix odd">
                                                             <div class="chat-avatar">
-                                                                <img src="assets/images/users/avatar-1.jpg" alt="Female">
+                                                                <img src="/static/assets/images/users/avatar-1.jpg" alt="Female">
                                                                 <i>10:01</i>
                                                             </div>
                                                             <div class="conversation-text">
@@ -238,7 +238,7 @@
                                                         </li>
                                                         <li class="clearfix">
                                                             <div class="chat-avatar">
-                                                                <img src="assets/images/users/avatar-5.jpg" alt="male">
+                                                                <img src="/static/assets/images/users/avatar-5.jpg" alt="male">
                                                                 <i>10:01</i>
                                                             </div>
                                                             <div class="conversation-text">
@@ -252,7 +252,7 @@
                                                         </li>
                                                         <li class="clearfix odd">
                                                             <div class="chat-avatar">
-                                                                <img src="assets/images/users/avatar-1.jpg" alt="male">
+                                                                <img src="/static/assets/images/users/avatar-1.jpg" alt="male">
                                                                 <i>10:02</i>
                                                             </div>
                                                             <div class="conversation-text">
@@ -430,7 +430,7 @@
                                 <div class="form-check form-switch card-switch mb-1">
                                     <input class="form-check-input" type="checkbox" name="data-bs-theme" id="layout-color-light" value="light">
                                     <label class="form-check-label" for="layout-color-light">
-                                        <img src="assets/images/layouts/light.png" alt="" class="img-fluid">
+                                        <img src="/static/assets/images/layouts/light.png" alt="" class="img-fluid">
                                     </label>
                                 </div>
                                 <h5 class="font-14 text-center text-muted mt-2">Light</h5>
@@ -440,7 +440,7 @@
                                 <div class="form-check form-switch card-switch mb-1">
                                     <input class="form-check-input" type="checkbox" name="data-bs-theme" id="layout-color-dark" value="dark">
                                     <label class="form-check-label" for="layout-color-dark">
-                                        <img src="assets/images/layouts/dark.png" alt="" class="img-fluid">
+                                        <img src="/static/assets/images/layouts/dark.png" alt="" class="img-fluid">
                                     </label>
                                 </div>
                                 <h5 class="font-14 text-center text-muted mt-2">Dark</h5>
@@ -455,7 +455,7 @@
                                     <div class="form-check form-switch card-switch mb-1">
                                         <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-fluid" value="fluid">
                                         <label class="form-check-label" for="layout-mode-fluid">
-                                            <img src="assets/images/layouts/light.png" alt="" class="img-fluid">
+                                            <img src="/static/assets/images/layouts/light.png" alt="" class="img-fluid">
                                         </label>
                                     </div>
                                     <h5 class="font-14 text-center text-muted mt-2">Fluid</h5>
@@ -466,7 +466,7 @@
                                         <div class="form-check form-switch card-switch mb-1">
                                             <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-boxed" value="boxed">
                                             <label class="form-check-label" for="layout-mode-boxed">
-                                                <img src="assets/images/layouts/boxed.png" alt="" class="img-fluid">
+                                                <img src="/static/assets/images/layouts/boxed.png" alt="" class="img-fluid">
                                             </label>
                                         </div>
                                         <h5 class="font-14 text-center text-muted mt-2">Boxed</h5>
@@ -482,7 +482,7 @@
                                 <div class="form-check form-switch card-switch mb-1">
                                     <input class="form-check-input" type="checkbox" name="data-topbar-color" id="topbar-color-light" value="light">
                                     <label class="form-check-label" for="topbar-color-light">
-                                        <img src="assets/images/layouts/light.png" alt="" class="img-fluid">
+                                        <img src="/static/assets/images/layouts/light.png" alt="" class="img-fluid">
                                     </label>
                                 </div>
                                 <h5 class="font-14 text-center text-muted mt-2">Light</h5>
@@ -492,7 +492,7 @@
                                 <div class="form-check form-switch card-switch mb-1">
                                     <input class="form-check-input" type="checkbox" name="data-topbar-color" id="topbar-color-dark" value="dark">
                                     <label class="form-check-label" for="topbar-color-dark">
-                                        <img src="assets/images/layouts/topbar-dark.png" alt="" class="img-fluid">
+                                        <img src="/static/assets/images/layouts/topbar-dark.png" alt="" class="img-fluid">
                                     </label>
                                 </div>
                                 <h5 class="font-14 text-center text-muted mt-2">Dark</h5>
@@ -507,7 +507,7 @@
                                     <div class="form-check form-switch card-switch mb-1">
                                         <input class="form-check-input" type="checkbox" name="data-menu-color" id="leftbar-color-light" value="light">
                                         <label class="form-check-label" for="leftbar-color-light">
-                                            <img src="assets/images/layouts/sidebar-light.png" alt="" class="img-fluid">
+                                            <img src="/static/assets/images/layouts/sidebar-light.png" alt="" class="img-fluid">
                                         </label>
                                     </div>
                                     <h5 class="font-14 text-center text-muted mt-2">Light</h5>
@@ -517,7 +517,7 @@
                                     <div class="form-check form-switch card-switch mb-1">
                                         <input class="form-check-input" type="checkbox" name="data-menu-color" id="leftbar-color-dark" value="dark">
                                         <label class="form-check-label" for="leftbar-color-dark">
-                                            <img src="assets/images/layouts/light.png" alt="" class="img-fluid">
+                                            <img src="/static/assets/images/layouts/light.png" alt="" class="img-fluid">
                                         </label>
                                     </div>
                                     <h5 class="font-14 text-center text-muted mt-2">Dark</h5>
@@ -533,7 +533,7 @@
                                     <div class="form-check form-switch card-switch mb-1">
                                         <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-default" value="default">
                                         <label class="form-check-label" for="leftbar-size-default">
-                                            <img src="assets/images/layouts/light.png" alt="" class="img-fluid">
+                                            <img src="/static/assets/images/layouts/light.png" alt="" class="img-fluid">
                                         </label>
                                     </div>
                                     <h5 class="font-14 text-center text-muted mt-2">Default</h5>
@@ -543,7 +543,7 @@
                                     <div class="form-check form-switch card-switch mb-1">
                                         <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-compact" value="compact">
                                         <label class="form-check-label" for="leftbar-size-compact">
-                                            <img src="assets/images/layouts/compact.png" alt="" class="img-fluid">
+                                            <img src="/static/assets/images/layouts/compact.png" alt="" class="img-fluid">
                                         </label>
                                     </div>
                                     <h5 class="font-14 text-center text-muted mt-2">Compact</h5>
@@ -553,7 +553,7 @@
                                     <div class="form-check form-switch card-switch mb-1">
                                         <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-small" value="condensed">
                                         <label class="form-check-label" for="leftbar-size-small">
-                                            <img src="assets/images/layouts/sm.png" alt="" class="img-fluid">
+                                            <img src="/static/assets/images/layouts/sm.png" alt="" class="img-fluid">
                                         </label>
                                     </div>
                                     <h5 class="font-14 text-center text-muted mt-2">Condensed</h5>
@@ -564,7 +564,7 @@
                                     <div class="form-check form-switch card-switch mb-1">
                                         <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-full" value="full">
                                         <label class="form-check-label" for="leftbar-size-full">
-                                            <img src="assets/images/layouts/full.png" alt="" class="img-fluid">
+                                            <img src="/static/assets/images/layouts/full.png" alt="" class="img-fluid">
                                         </label>
                                     </div>
                                     <h5 class="font-14 text-center text-muted mt-2">Full Layout</h5>
@@ -591,6 +591,34 @@
         
         <!-- Vendor js -->
         <%- include('./partials/script') %>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    const socket = io();
+
+    socket.on('onlineUsers', (onlineUsers) => {
+      document.getElementById('onlineUsers').innerText = onlineUsers;
+    });
+
+    // Function to update total visits
+    async function updateTotalVisits() {
+      try {
+        const response = await fetch('/admin/total-visits');
+        const data = await response.json();
+        document.getElementById('totalVisits').innerText = data.totalVisits;
+      } catch (error) {
+        console.error('Error updating total visits:', error);
+      }
+    }
+
+    // Update total visits on page load
+    window.onload = () => {
+      updateTotalVisits();
+
+      // Update total visits every 10 seconds
+      setInterval(updateTotalVisits, 10000);
+    };
+  </script>
 
     </body>
 </html> 

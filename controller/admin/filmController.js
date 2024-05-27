@@ -28,7 +28,7 @@ exports.addFilm = async(req,res,next)=>{
         })
 
         const saveFilm = await data.save();
-        res.json(saveFilm);        
+        res.redirect('/admin/films/list')        
     }
     catch(err){
         if (err.message.includes('Dosya yükleme hatası')) {
@@ -115,7 +115,7 @@ exports.deleteFilm = async (req, res, next) => {
         if (!film) {
             return res.status(404).send('Film bulunamadı veya zaten silinmiş');
         }
-        res.json()
+        res.redirect('/admin/films/list')
     } catch (err) {
         res.status(500).json({ message: 'Sunucu hatası: ' + err.message });
     }

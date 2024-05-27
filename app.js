@@ -2,16 +2,36 @@ const express = require('express');
 const adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth');
 const connectDB = require('./config/database');
+const socketIo = require('socket.io');
 const bodyParser = require('body-parser');
 const path = require('path')
 const cookiParser = require('cookie-parser');
+const trackVisits = require('./middlewares/trackVisitsMiddleware');
+const http = require('http');
+
 
 // Load environment variables
 require('dotenv').config();
 
 const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 
 connectDB();
+
+app.use(trackVisits);
+
+let onlineUsers = 0;
+
+io.on('connection', (socket) => {
+  onlineUsers++;
+  io.emit('onlineUsers', onlineUsers);
+
+  socket.on('disconnect', () => {
+    onlineUsers--;
+    io.emit('onlineUsers', onlineUsers);
+  });
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,6 +44,10 @@ app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 app.use('/admin',adminRouter);
 app.use('/',authRouter);
 
-app.listen(3000,()=>{
+app.get('/admin', (req, res) => {
+    res.render('admin/homePage', { onlineUsers: onlineUsers }); // onlineUsers'ı başlat
+  });
+
+server.listen(3000,()=>{
     console.log('server running');
 })
