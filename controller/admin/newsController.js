@@ -1,7 +1,8 @@
 const News = require('../../models/newsModel');
+const { uploadFiles,upload } = require('../../middlewares/posterUploadMiddleware');
 
 exports.renderAddNewsPage = async(req,res,next)=>{
-
+    res.render('admin/addNewsPage');
 }
 
 exports.addNews = async(req,res,next)=>{
@@ -13,7 +14,9 @@ exports.addNews = async(req,res,next)=>{
             path: file.path
           }));
 
-        const data = new Film({
+          const tagsArray = tags.split('-');
+
+        const data = new News({
             title,
             content,
             tags,

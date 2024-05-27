@@ -13,15 +13,16 @@ const app = express();
 
 connectDB();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/static',express.static(path.join(__dirname,'public/admin-dashboard/admin/dist')));//admin template
 app.set('view engine', 'ejs')
 app.use(cookiParser())
-app.use(bodyParser.json());
 app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 //Routerlar
 app.use('/admin',adminRouter);
-
+app.use('/',authRouter);
 
 app.listen(3000,()=>{
     console.log('server running');

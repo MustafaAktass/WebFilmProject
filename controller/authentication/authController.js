@@ -40,12 +40,12 @@ exports.login = async (req, res, next) => {
         if (check) {
             const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
             if (isPasswordMatch) {
-                // const token = createToken(check._id, check.role); // role bilgisini ekliyoruz
+                const token = createToken(check._id, check.role); // role bilgisini ekliyoruz
                 res.cookie("cookieJWT", token, {
                     httpOnly: true,
                     maxAge: 1000 * 60 * 60 * 24
                 });
-                // res.redirect(''); //güncellenecek
+                res.status(201).json({ message: "Başarıyla giriş yapıldı", token: token });
             } else {
                 res.send("Kullanıcı adı veya şifre hatalı");
             }
@@ -60,9 +60,9 @@ exports.logout = (req, res) => {
     // res.redirect('/auth/login');//güncellenecek
 };
 
-// const createToken = (userId, role) => {
-//     return jwt.sign({ userId, role }, process.env.JWT_SECRET, {
-//         expiresIn: "1d",
-//     });
-// };
+const createToken = (userId, role) => {
+    return jwt.sign({ userId, role }, process.env.JWT_SECRET, {
+        expiresIn: "1d",
+    });
+};
 

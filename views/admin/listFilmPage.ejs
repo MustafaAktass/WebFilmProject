@@ -14,7 +14,7 @@
             <div class="content">
                 <!-- Start Content-->
                 <div class="container-fluid">                   
-                    <%- include('./partials/pageTitle') %>
+                    <%- include('./partials/pageTitle',{pageTitle:"Filmleri Listele"}) %>
                     <div class="row">
                             <div class="card">                               
                                 <div class="card-body">
@@ -41,10 +41,11 @@
                                                     <td><%= films[index].director %></td>
                                                     <td><%= films[index].rating %></td>
                                                     <td>
-                                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                                        <a href="/admin/films/update/<%= films[index]._id %>" class="text-reset fs-16 px-1"> <i
                                                                 class="ri-settings-3-line"></i></a>
-                                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                                                class="ri-delete-bin-2-line"></i></a>
+                                                        <a href="javascript:void(0);" class="text-reset fs-16 px-1" onclick="deleteFilm('<%= films[index]._id %>');"> 
+                                                                <i class="ri-delete-bin-2-line"></i></a>
+                                                                
                                                     </td>
                                                 </tr>
                                                 <% } %>                                              
@@ -74,5 +75,27 @@
     <!-- <script src="assets/js/app.min.js"></script> -->
 
 </body>
-
+<script>
+    function deleteFilm(filmId) {
+        if (confirm('Bu filmi silmek istediğinize emin misiniz?')) {
+            fetch(`/admin/films/delete/${filmId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: filmId })
+            }).then(response => {
+                if (response.ok) {
+                    alert('Film başarıyla silindi');
+                    location.reload();
+                } else {
+                    alert('Film silinirken bir hata oluştu');
+                }
+            }).catch(error => {
+                alert('Film silinirken bir hata oluştu');
+                console.error('Hata:', error);
+            });
+        }
+    }
+</script>
 </html>

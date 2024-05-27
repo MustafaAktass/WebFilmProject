@@ -9,14 +9,14 @@ exports.authToken = async (req, res, next) => {
             jwt.verify(token, process.env.JWT_SECRET, async(err, decoded) => {
                 if (err) {
                     console.log(err.message);
-                    res.redirect("/auth/login");
+                    // res.redirect("/auth/login");
                 } else { 
                     req.user = decoded;
                     next();
                 }
             });
         } else {
-            res.redirect("/auth/login");
+            // res.redirect("/auth/login");
         }
     } catch (error) {
         res.json({
