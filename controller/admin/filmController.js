@@ -8,7 +8,7 @@ exports.renderAddFilmPage = async(req,res,next)=>{
 exports.addFilm = async(req,res,next)=>{
     try{
         const files = await uploadFiles(req,res);
-        const {title,description,genre,director,actors,releaseDate,rating} = req.body;
+        const {title,description,genre,director,actors,releaseDate,rating,isInTheaters,trailerUrl} = req.body;
         
         const posters = files.map(file => ({
             path: file.path
@@ -24,6 +24,8 @@ exports.addFilm = async(req,res,next)=>{
             actors:actorsArray,
             posters,
             releaseDate: new Date(releaseDate),
+            isInTheaters:isInTheaters === 'on',
+            trailerUrl,
             rating
         })
 
@@ -69,8 +71,9 @@ exports.updateFilm = async (req, res, next) => {
         const files = await uploadFiles(req, res);
         const filmId = req.params.id; // URL'den film ID'sini alın
         const existingFilm = await Film.findById(filmId);
-        const { title,description,genre,director,actors,releaseDate,rating } = req.body;
+        const { title,description,genre,director,actors,releaseDate,rating,trailerUrl } = req.body;
         
+        const actorsArray = actors.split('-');
         // Güncelleme için yeni dosyaları yükleyin (isteğe bağlı)
         
         let posters = [];
@@ -83,15 +86,18 @@ exports.updateFilm = async (req, res, next) => {
             // Yeni resim yüklenmemişse eski resimleri kullan
             posters = existingFilm.posters;
         }
+        const isInTheaters = typeof req.body.isInTheaters !== 'undefined';
         // Film verilerini güncelleyin
         const updatedData = {
             title: title || existingFilm.title,
             description: description || existingFilm.description,
             genre: genre || existingFilm.genre,
             director: director || existingFilm.director,
-            actors: actors || existingFilm.actors,
+            actors: actorsArray || existingFilm.actors,
             releaseDate: releaseDate ? new Date(releaseDate) : existingFilm.releaseDate,
             posters: posters,
+            isInTheaters: isInTheaters,
+            trailerUrl:trailerUrl || existingFilm.trailerUrl,
             rating
         };
 

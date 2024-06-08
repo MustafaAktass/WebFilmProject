@@ -21,6 +21,7 @@ exports.addNews = async(req,res,next)=>{
             content,
             tags,
             images,
+            tags:tagsArray
         })
 
         const saveNews = await data.save();
@@ -67,8 +68,9 @@ exports.updateNews = async (req, res, next) => {
         const existingNews = await News.findById(newsId);
         const { title,content,tags } = req.body;
 
+        const tagsArray = tags.split('-');
+
         // Güncelleme için yeni dosyaları yükleyin (isteğe bağlı)
-        
         let images = [];
         if (files && files.length > 0) {
             images = files.map(file => ({
@@ -85,7 +87,7 @@ exports.updateNews = async (req, res, next) => {
         const updatedData = {
             title: title || existingNews.title,
             content: content || existingNews.content,
-            tags: tags || existingNews.tags,
+            tags: tagsArray || existingNews.tags,
             images:images
         };
         

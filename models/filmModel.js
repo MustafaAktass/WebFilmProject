@@ -28,6 +28,10 @@ const filmSchema = new Schema({
     type: Date,
     required: true
   },
+  isInTheaters: {
+    type: Boolean,
+    default: false
+  },
   rating: {
     type: Number,
     required: true,
@@ -36,7 +40,11 @@ const filmSchema = new Schema({
   },
   posters: [{
     path: String
-}],
+  }],
+  trailerUrl: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now

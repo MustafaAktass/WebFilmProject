@@ -1,13 +1,14 @@
-const User = require("../../models/userModel")
+const User = require("../../models/userModel");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-exports.loginPage=(req,res,next)=>{
-    // res.render('auth/login',{layout:false})
-}
-exports.registerPage=(req,res,next)=>{
+exports.loginPage = (req, res, next) => {
+    res.render('user/partials/login');
+};
+
+exports.registerPage = (req, res, next) => {
     // res.render('auth/register',{layout:false})
-}
+};
 
 exports.register = async (req, res, next) => {
     try {
@@ -16,24 +17,35 @@ exports.register = async (req, res, next) => {
             userName: req.body.userName,
             password: req.body.password
         };
+
         // Kullanıcının önceden kayıtlı olup olmadığının kontrolü
         const existingUser = await User.findOne({ userName: data.userName });
         if (existingUser) {
             return res.status(400).json({ message: "Bu kullanıcı adı kullanılmaktadır. Lütfen başka kullanıcı adı giriniz." });
         }
+
         // Password hash
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
         data.password = hashedPassword;
-        const userData = await User.insertMany(data);
-        console.log(userData);
 
-        res.status(201).json({ message: "Kullanıcı başarıyla kaydedildi", user: userData });
+        // Kullanıcı kaydet
+        const userData = await User.create(data);
+
+        // JWT oluştur ve çerez olarak ayarla
+        const token = createToken(userData._id, userData.role);
+        res.cookie("cookieJWT", token, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24
+        });
+
+        res.redirect('/user/home')
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Sunucu hatası: ' + err.message });
     }
 };
+
 exports.login = async (req, res, next) => {
     try {
         const check = await User.findOne({ userName: req.body.userName });
@@ -49,15 +61,18 @@ exports.login = async (req, res, next) => {
             } else {
                 res.send("Kullanıcı adı veya şifre hatalı");
             }
+        } else {
+            res.send("Kullanıcı bulunamadı");
         }
-    } catch {
-        res.send("Hatalı Giden Bir Şeyler Oldu");
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Sunucu hatası: ' + err.message });
     }
 };
 
 exports.logout = (req, res) => {
     res.clearCookie('cookieJWT');
-    // res.redirect('/auth/login');//güncellenecek
+    res.status(200).json({ message: "Başarıyla çıkış yapıldı" });
 };
 
 const createToken = (userId, role) => {
@@ -65,4 +80,3 @@ const createToken = (userId, role) => {
         expiresIn: "1d",
     });
 };
-

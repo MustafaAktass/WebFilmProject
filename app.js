@@ -1,6 +1,7 @@
 const express = require('express');
 const adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 const connectDB = require('./config/database');
 const socketIo = require('socket.io');
 const bodyParser = require('body-parser');
@@ -36,12 +37,14 @@ io.on('connection', (socket) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/static',express.static(path.join(__dirname,'public/admin-dashboard/admin/dist')));//admin template
+app.use('/staticUser',express.static(path.join(__dirname,'public/user-dashboard/dest')));//user template
 app.set('view engine', 'ejs')
 app.use(cookiParser())
 app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 //Routerlar
 app.use('/admin',adminRouter);
+app.use('/user',userRouter);
 app.use('/',authRouter);
 
 app.get('/admin', (req, res) => {
