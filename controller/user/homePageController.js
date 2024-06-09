@@ -7,27 +7,37 @@ const formatDate = (date) => {
     return new Date(date).toLocaleString('en-US', options).replace(',', '');
   };
 
-exports.homePage = async(req,res,next)=>{
+  exports.homePage = async (req, res, next) => {
     try {
+        const roleControl = req.user.role;
+        console.log(roleControl)
+        let tokenControl = false;
+
+        if (req.cookies.cookieJWT) {
+            tokenControl = true;
+        }
+
         const films = await Film.find();
         const filmsWithDetails = await getYouTubeThumbnails(films);
         const filmsInTheaters = filmsWithDetails.filter(film => film.isInTheaters);
         const topRatedFilms = filmsWithDetails.sort((a, b) => b.rating - a.rating).slice(0, 2);
         const latestNews = await News.find().sort({ createdAt: -1 }).limit(4);
         latestNews.forEach(news => {
-        news.formattedDate = formatDate(news.createdAt);
+            news.formattedDate = formatDate(news.createdAt);
         });
         const news = await News.find();
-        
+
         res.render('user/homePage', {
+            tokenControl,
+            roleControl,
             topRatedFilms,
             filmsInTheaters,
-            films:filmsWithDetails,
+            films: filmsWithDetails,
             news,
             latestNews,
         });
     } catch (err) {
-        res.status(500).json({ message: err.message }); 
+        res.status(500).json({ message: err.message });
     }
 }
 

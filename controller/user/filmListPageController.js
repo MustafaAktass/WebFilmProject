@@ -8,6 +8,13 @@ const formatDate = (date) => {
 
 exports.filmListPage = async (req, res, next) => {
   try {
+    const roleControl = req.user.role;
+
+    let tokenControl = false;
+        if (req.cookies.cookieJWT) {
+            tokenControl = true;
+        }
+
     const perPage = parseInt(req.query.perPage) || 5; // Sayfa başına film sayısı, varsayılan 5
     const page = parseInt(req.query.page) || 1; // Mevcut sayfa numarası, varsayılan 1
 
@@ -21,6 +28,8 @@ exports.filmListPage = async (req, res, next) => {
     });
 
     res.render('user/filmListPage', {
+      tokenControl,
+      roleControl,
       films,
       totalFilms,
       current: page,

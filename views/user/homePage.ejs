@@ -30,13 +30,13 @@
 				<% for( let index = 0; index < films.length; index++ ) { %>
 	    		<div class="movie-item">
 	    			<div class="mv-img">
-	    				<a href="#"><img src="/<%= films[index].posters[0].path.replace(/\\/g, '/') %>" alt="" width="285" height="437"></a>
+	    				<a href="/user/film/detail/<%= films[index].slug %>"><img src="/<%= films[index].posters[0].path.replace(/\\/g, '/') %>" alt="" width="285" height="437"></a>
 	    			</div>
 	    			<div class="title-in">						
 	    				<div class="cate">							
-	    					<span class="blue"><a href="#"><%= films[index].genre %></a></span>							
+	    					<span class="blue"><a href="/user/film/detail/<%= films[index].slug %>"><%= films[index].genre %></a></span>							
 	    				</div>
-	    				<h6><a href="#"><%= films[index].title %></a></h6>
+	    				<h6><a href="/user/film/detail/<%= films[index].slug %>"><%= films[index].title %></a></h6>
 	    				<p><i class="ion-android-star"></i><span><%= films[index].rating %></span> /10</p>
 	    			</div>
 	    		</div>
@@ -67,10 +67,10 @@
 					            				<img src="/<%= filmsInTheaters[index].posters[0].path.replace(/\\/g, '/') %>"  alt="" width="185" height="284">
 					            			</div> 
 					            			<div class="hvr-inner">
-					            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            				<a  href="/user/film/detail/<%= films[index]._id %>"> Filme Git <i class="ion-android-arrow-dropright"></i> </a>
 					            			</div>
 					            			<div class="title-in">
-					            				<h6><a href="#"><%= filmsInTheaters[index].title %></a></h6>
+					            				<h6><a href="/user/film/detail/<%= films[index]._id %>"><%= filmsInTheaters[index].title %></a></h6>
 					            				<p><i class="ion-android-star"></i><span><%= filmsInTheaters[index].rating %></span> /10</p>
 					            			</div>
 					            		</div>
@@ -87,7 +87,7 @@
 				</div>
 				<div class="tabs">
 					<ul class="tab-links-2">
-						<li class="active"><a href="#tab21">#Popular</a></li>					                      
+						<li class="active"><a href="#tab21">#Popüler</a></li>					                      
 					</ul>			
 				    <div class="tab-content">
 				        <div id="tab21" class="tab active">
@@ -101,10 +101,10 @@
 					            				<img src="/<%= topRatedFilms[index].posters[0].path.replace(/\\/g, '/') %>" alt="" width="185" height="284">
 					            			</div>
 					            			<div class="hvr-inner">
-					            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            				<a  href="/user/film/detail/<%= films[index]._id %>"> Filme Git <i class="ion-android-arrow-dropright"></i> </a>
 					            			</div>
 					            			<div class="title-in">
-					            				<h6><a href="#"><%= topRatedFilms[index].title %></a></h6>
+					            				<h6><a href="/user/film/detail/<%= films[index]._id %>"><%= topRatedFilms[index].title %></a></h6>
 					            				<p><i class="ion-android-star"></i><span><%= topRatedFilms[index].rating %></span> /10</p>
 					            			</div>
 					            		</div>		
@@ -170,7 +170,7 @@
 		<div class="row ipad-width">
 			<div class="col-md-8">
 				<div class="ads">
-					<img src="/staticUser/images/uploads/ads2.png" alt="" width="728" height="106">
+					<img src="/staticUser/custom images/banner1.jpg" alt="" width="728" height="106">
 				</div>
 				<div class="title-hd">
 					<h2>Son Duyurular</h2>
@@ -187,7 +187,7 @@
 				            	<div class="blog-item-style-1">
 				            		<img src="/<%= latestNews[0].images[0].path.replace(/\\/g, '/') %>" alt="" width="170" height="250">
 				            		<div class="blog-it-infor">
-				            			<h3><a href="#"><%= latestNews[0].title %></a></h3>
+				            			<h3><a href="/user/news/detail/<%= latestNews[0].slug %>"><%= latestNews[0].title %></a></h3>
 				            			<span class="time"><%= latestNews[0].formattedDate %></span>
 				            			<p><%= latestNews[0].content %></p>
 				            		</div>
@@ -199,14 +199,14 @@
 				<div class="morenew">
 					<div class="title-hd">
 						<h3>Daha Fazla Duyuru</h3>
-						<a href="#" class="viewall">Tüm Duyuruları Gör<i class="ion-ios-arrow-right"></i></a>
+						<a href="/user/news/list" class="viewall">Tüm Duyuruları Gör<i class="ion-ios-arrow-right"></i></a>
 					</div>
 					<div class="more-items">
 						<div class="left">
 							<% for (let index = 1; index < latestNews.length; index++) { %>
 								<% if (index < 2) { %>
 									<div class="more-it">
-										<h6><a href="#"><%= latestNews[index].title %></a></h6>
+										<h6><a href="/user/news/detail/<%= latestNews[index].slug %>"><%= latestNews[index].title %></a></h6>
 										<span class="time"><%= latestNews[index].formattedDate %></span>
 									  </div>
 							 	<% } %>
@@ -216,7 +216,7 @@
 							<% for (let index = 1; index < latestNews.length; index++) { %>
 								<% if (index >= 2) { %>
 									<div class="more-it">
-										<h6><a href="#"><%= latestNews[index].title %></a></h6>
+										<h6><a href="/user/news/detail/<%= latestNews[index].slug %>"><%= latestNews[index].title %></a></h6>
 										<span class="time"><%= latestNews[index].formattedDate %></span>
 									  </div>
 									<% } %>

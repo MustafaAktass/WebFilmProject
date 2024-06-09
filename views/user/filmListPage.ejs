@@ -62,7 +62,7 @@
                       <span></span>
                       <img src="/<%= films[index].posters[0].path.replace(/\\/g, '/') %>" alt="">
                       <div class="mv-item-infor">
-                        <h6><a href="/user/film/detail/<%= films[index]._id %>"><%= films[index].title %> <span><%= films[index].formattedDate %></span></a></h6>
+                        <h6><a href="/user/film/detail/<%= films[index].slug %> %>"><%= films[index].title %> <span><%= films[index].formattedDate %></span></a></h6>
                         <p class="rate"><i class="ion-android-star"></i><span><%= films[index].rating %></span> /10</p>
                         <p class="describe"><%= films[index].description %></p>
                         <p>Yönetmen: <a href="#"><%= films[index].director %></a></p>

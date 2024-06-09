@@ -38,7 +38,6 @@ exports.register = async (req, res, next) => {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24
         });
-
         res.redirect('/user/home')
     } catch (err) {
         console.error(err);
@@ -57,13 +56,14 @@ exports.login = async (req, res, next) => {
                     httpOnly: true,
                     maxAge: 1000 * 60 * 60 * 24
                 });
-                res.status(201).json({ message: "Başarıyla giriş yapıldı", token: token });
+                res.redirect('/user/home')
             } else {
                 res.send("Kullanıcı adı veya şifre hatalı");
             }
         } else {
             res.send("Kullanıcı bulunamadı");
         }
+        
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Sunucu hatası: ' + err.message });

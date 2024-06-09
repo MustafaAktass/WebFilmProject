@@ -1,11 +1,19 @@
 const express = require('express');
 const filmController = require('../controller/admin/filmController');
 const newsController = require('../controller/admin/newsController');
+const homePageController = require('../controller/admin/homePageController')
 const userVisitController = require('../controller/admin/userVisitController');
+const {authorizeAdmin} = require('../middlewares/authorityControlMiddleware')
+const {roleDefinition} = require('../middlewares/roleDefinitionMiddleware')
+const {authToken} = require('../middlewares/authTokenMiddleware')
+
 
 router = express.Router();
 
 
+router.use(authToken,roleDefinition,authorizeAdmin)
+//home page router
+router.get('/',homePageController.homePage);
 
 //film router
 router.get('/films/new',filmController.renderAddFilmPage);

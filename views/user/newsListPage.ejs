@@ -44,7 +44,7 @@
 				<div class="blog-item-style-1 blog-item-style-3">
             		<img src="/<%= news[index].images[0].path.replace(/\\/g, '/') %>" alt="">
             		<div class="blog-it-infor">
-            			<h3><a href="/user/news/detail/<%= news[index]._id %>"><%= news[index].title %></a></h3>
+            			<h3><a href="/user/news/detail/<%= news[index].slug %> %>"><%= news[index].title %></a></h3>
             			<span class="time"><%= news[index].formattedDate %></span>
             			<p><%= news[index].content.length > 150 ? news[index].content.substring(0, 150) + '...' : news[index].content %></p>
             		</div>
@@ -80,7 +80,7 @@
 						<h4 class="sb-title">Son Duyurular</h4>
 						<% for (let index = 0; index < latestNews.length; index++) { %>
 						<div class="recent-item">
-							<span><%= index + 1 %></span><h6><a href="#"><%= latestNews[index].title %></a></h6>
+							<span><%= index + 1 %></span><h6><a href="/user/news/detail/<%= latestNews[index].slug %>"><%= latestNews[index].title %></a></h6>
 						</div>
 						<% } %>
 					</div>

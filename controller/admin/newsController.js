@@ -1,5 +1,21 @@
 const News = require('../../models/newsModel');
 const { uploadFiles,upload } = require('../../middlewares/posterUploadMiddleware');
+const slugify = require('slugify');
+
+const generateUniqueSlug = async (title) => {
+    let slug = slugify(title, { lower: true, strict: true });
+    let existingNews = await News.findOne({ slug });
+    let counter = 1;
+  
+    while (existingNews) {
+      slug = slugify(`${title}-${counter}`, { lower: true, strict: true });
+      existingNews = await News.findOne({ slug });
+      counter++;
+    }
+  
+    return slug;
+  };
+  
 
 exports.renderAddNewsPage = async(req,res,next)=>{
     res.render('admin/addNewsPage');
@@ -9,6 +25,8 @@ exports.addNews = async(req,res,next)=>{
     try{
         const files = await uploadFiles(req,res);
         const {title,content,tags} = req.body;
+
+        const slug = await generateUniqueSlug(title);
 
         const images = files.map(file => ({
             path: file.path
@@ -21,7 +39,8 @@ exports.addNews = async(req,res,next)=>{
             content,
             tags,
             images,
-            tags:tagsArray
+            tags:tagsArray,
+            slug
         })
 
         const saveNews = await data.save();

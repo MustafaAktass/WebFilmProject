@@ -8,6 +8,13 @@ const formatDate = (date) => {
 
 exports.newsListPage = async (req, res, next) => {
   try {
+    const roleControl = req.user.role
+
+    let tokenControl = false;
+        if (req.cookies.cookieJWT) {
+            tokenControl = true;
+        }
+
     const perPage = parseInt(req.query.perPage) || 5; // Sayfa başına duyuru sayısı, varsayılan 5
     const page = parseInt(req.query.page) || 1; // Mevcut sayfa numarası, varsayılan 1
 
@@ -24,6 +31,8 @@ exports.newsListPage = async (req, res, next) => {
     const allTags = await News.distinct('tags');
 
     res.render('user/newsListPage', {
+      tokenControl,
+      roleControl,
       news: newsList,
       allTags,
       latestNews,

@@ -1,7 +1,21 @@
 const { uploadFiles,upload } = require('../../middlewares/posterUploadMiddleware');
 const Film = require('../../models/filmModel');
+const slugify = require('slugify');
 
-
+const generateUniqueSlug = async (title) => {
+    let slug = slugify(title, { lower: true, strict: true });
+    let existingFilm = await Film.findOne({ slug });
+    let counter = 1;
+  
+    while (existingFilm) {
+      slug = slugify(`${title}-${counter}`, { lower: true, strict: true });
+      existingFilm = await Film.findOne({ slug });
+      counter++;
+    }
+  
+    return slug;
+  };
+  
 exports.renderAddFilmPage = async(req,res,next)=>{
     res.render('admin/addFilmPage');
 }
@@ -9,6 +23,8 @@ exports.addFilm = async(req,res,next)=>{
     try{
         const files = await uploadFiles(req,res);
         const {title,description,genre,director,actors,releaseDate,rating,isInTheaters,trailerUrl} = req.body;
+
+        const slug = await generateUniqueSlug(title);
         
         const posters = files.map(file => ({
             path: file.path
@@ -26,7 +42,8 @@ exports.addFilm = async(req,res,next)=>{
             releaseDate: new Date(releaseDate),
             isInTheaters:isInTheaters === 'on',
             trailerUrl,
-            rating
+            rating,
+            slug
         })
 
         const saveFilm = await data.save();

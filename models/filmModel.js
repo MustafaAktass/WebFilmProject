@@ -45,6 +45,11 @@ const filmSchema = new Schema({
     type: String,
     required: true
   },
+  slug: {
+    type: String,
+    required: true,
+    unique: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
