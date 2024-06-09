@@ -30,7 +30,8 @@
 				<% for( let index = 0; index < films.length; index++ ) { %>
 	    		<div class="movie-item">
 	    			<div class="mv-img">
-	    				<a href="/user/film/detail/<%= films[index].slug %>"><img src="/<%= films[index].posters[0].path.replace(/\\/g, '/') %>" alt="" width="285" height="437"></a>
+	    				<a href="/user/film/detail/<%= films[index].slug %>"><img src="/<%= films[index].posters[0].path.replace(/\\/g, '/') %>" alt="" style="width: 300px; height: 300px; object-fit: cover;">
+						</a>
 	    			</div>
 	    			<div class="title-in">						
 	    				<div class="cate">							
@@ -64,13 +65,13 @@
 				            		<div class="slide-it">
 				            			<div class="movie-item">
 					            			<div class="mv-img">
-					            				<img src="/<%= filmsInTheaters[index].posters[0].path.replace(/\\/g, '/') %>"  alt="" width="185" height="284">
+					            				<img src="/<%= filmsInTheaters[index].posters[0].path.replace(/\\/g, '/') %>" alt="" style="width: 300px; height: 300px; object-fit: cover;">
 					            			</div> 
 					            			<div class="hvr-inner">
-					            				<a  href="/user/film/detail/<%= films[index]._id %>"> Filme Git <i class="ion-android-arrow-dropright"></i> </a>
+					            				<a  href="/user/film/detail/<%= filmsInTheaters[index].slug %>"> Filme Git <i class="ion-android-arrow-dropright"></i> </a>
 					            			</div>
 					            			<div class="title-in">
-					            				<h6><a href="/user/film/detail/<%= films[index]._id %>"><%= filmsInTheaters[index].title %></a></h6>
+					            				<h6><a href="/user/film/detail/<%= filmsInTheaters[index].slug %>"><%= filmsInTheaters[index].title %></a></h6>
 					            				<p><i class="ion-android-star"></i><span><%= filmsInTheaters[index].rating %></span> /10</p>
 					            			</div>
 					            		</div>
@@ -98,13 +99,13 @@
 										
 				            			<div class="movie-item">
 					            			<div class="mv-img">
-					            				<img src="/<%= topRatedFilms[index].posters[0].path.replace(/\\/g, '/') %>" alt="" width="185" height="284">
+					            				<img src="/<%= topRatedFilms[index].posters[0].path.replace(/\\/g, '/') %>" alt="" style="width: 300px; height: 300px; object-fit: cover;">
 					            			</div>
 					            			<div class="hvr-inner">
-					            				<a  href="/user/film/detail/<%= films[index]._id %>"> Filme Git <i class="ion-android-arrow-dropright"></i> </a>
+					            				<a  href="/user/film/detail/<%= topRatedFilms[index].slug %>"> Filme Git <i class="ion-android-arrow-dropright"></i> </a>
 					            			</div>
 					            			<div class="title-in">
-					            				<h6><a href="/user/film/detail/<%= films[index]._id %>"><%= topRatedFilms[index].title %></a></h6>
+					            				<h6><a href="/user/film/detail/<%= topRatedFilms[index].slug %>"><%= topRatedFilms[index].title %></a></h6>
 					            				<p><i class="ion-android-star"></i><span><%= topRatedFilms[index].rating %></span> /10</p>
 					            			</div>
 					            		</div>		

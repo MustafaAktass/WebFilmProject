@@ -59,16 +59,14 @@
 							</p>
 						</div>
 						<div class="rate-star">
-							<p>Filmi Puanla  </p>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star-outline"></i>
+							<p>Filmi Puanla </p>
+							<% for (var i = 1; i <= 10; i++) { %>
+								<% if (i <= film.rating) { %>
+									<i class="ion-ios-star"></i>
+								<% } else { %>
+									<i class="ion-ios-star-outline"></i>
+								<% } %>
+							<% } %>
 						</div>
 					</div>
 					<div class="movie-tabs">

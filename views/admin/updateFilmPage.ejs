@@ -61,7 +61,7 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="mb-3 me-3 flex-grow-1">
                                                       <label for="example-number" class="form-label">IMDB Puanı(1-10)</label>
-                                                      <input class="form-control" id="example-number" type="number" required name="rating" min="1" max="10" step="0.1">
+                                                      <input class="form-control" id="example-number" type="number" required name="rating" min="1" max="10" step="0.1" value="<%= film.rating %>" >
                                                       <div class="invalid-feedback">Lütfen 1 ile 10 arasında bir puan giriniz.</div>
                                                     </div>
                                                     <div class="form-check form-switch">
@@ -71,7 +71,7 @@
                                                   </div>
                                                   <div class="mb-3">
                                                     <label for="example-email" class="form-label">Fragman URL</label>
-                                                    <input type="text" id="example-email" name="trailerUrl" class="form-control" placeholder="Fragman URL" required>
+                                                    <input type="text" id="example-email" name="trailerUrl" class="form-control" placeholder="Fragman URL" value="<%= film.trailerUrl %>"  required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="example-date" class="form-label">Vizyon Tarihi</label>
