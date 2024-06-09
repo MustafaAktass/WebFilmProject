@@ -18,7 +18,9 @@ const generateUniqueSlug = async (title) => {
   
 
 exports.renderAddNewsPage = async(req,res,next)=>{
-    res.render('admin/addNewsPage');
+    res.render('admin/addNewsPage',{
+        user: req.user,
+    });
 }
 
 exports.addNews = async(req,res,next)=>{
@@ -58,6 +60,7 @@ exports.listNews = async (req, res, next) => {
     try {
         const news = await News.find(); 
         res.render('admin/listNewsPage',{
+            user: req.user,
             news
         });
     } catch (err) {
@@ -73,6 +76,7 @@ exports.getUpdateNewsForm = async (req, res, next) => {
             return res.status(404).json({ message: 'Haber bulunamadı' });
         }
         res.render('admin/updateNewsPage',{
+            user: req.user,
             news
         }); // Haber verisini JSON formatında döndürün
     } catch (err) {

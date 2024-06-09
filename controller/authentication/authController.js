@@ -72,7 +72,7 @@ exports.login = async (req, res, next) => {
 
 exports.logout = (req, res) => {
     res.clearCookie('cookieJWT');
-    res.status(200).json({ message: "Başarıyla çıkış yapıldı" });
+    res.redirect('/user/home')
 };
 
 const createToken = (userId, role) => {

@@ -11,7 +11,7 @@ const {authToken} = require('../middlewares/authTokenMiddleware')
 router = express.Router();
 
 
-router.use(authToken,roleDefinition,authorizeAdmin)
+router.use(roleDefinition,authToken,authorizeAdmin)
 //home page router
 router.get('/',homePageController.homePage);
 

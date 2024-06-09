@@ -51,6 +51,23 @@ app.get('/admin', (req, res) => {
     res.render('admin/homePage', { onlineUsers: onlineUsers }); // onlineUsers'ı başlat
   });
 
+  app.use('*', (req, res) => {
+    if (req.originalUrl.startsWith('/admin')) {
+        res.status(404).render('./admin/404', {
+            layout: false
+        });
+    } else if (req.originalUrl.startsWith('/user')) {
+        res.status(404).render('./user/404', {
+            layout: false
+        });
+    } else {
+        res.status(404).render('./user/404', {
+            layout: false
+        });
+    }
+});
+
+
 server.listen(3000,()=>{
     console.log('server running');
 })

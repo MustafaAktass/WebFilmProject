@@ -17,7 +17,9 @@ const generateUniqueSlug = async (title) => {
   };
   
 exports.renderAddFilmPage = async(req,res,next)=>{
-    res.render('admin/addFilmPage');
+    res.render('admin/addFilmPage',{
+        user: req.user,
+    });
 }
 exports.addFilm = async(req,res,next)=>{
     try{
@@ -61,6 +63,7 @@ exports.listFilms = async (req, res, next) => {
     try {
         const films = await Film.find(); 
         res.render('admin/listFilmPage',{
+            user: req.user,
             films
         }); 
     } catch (err) {
@@ -76,6 +79,7 @@ exports.getUpdateFilmForm = async (req, res, next) => {
             return res.status(404).json({ message: 'Film bulunamadı' });
         }
         res.render('admin/updateFilmPage',{
+            user: req.user,
             film
         });  // Film verisini JSON formatında döndürün
     } catch (err) {

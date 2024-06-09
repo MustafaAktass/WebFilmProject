@@ -5,11 +5,14 @@ const newsListPageController = require('../controller/user/newsListPageControlle
 const newsDetailPageController = require('../controller/user/newsDetailPageController')
 const filmDetailPageController = require('../controller/user/filmDetailPageController')
 const {roleDefinition} = require('../middlewares/roleDefinitionMiddleware')
+const {authToken} = require('../middlewares/authTokenMiddleware')
 
 router = express.Router();
 
 router.use(roleDefinition)
 
+
+router.get('/',homePageController.homePage);
 router.get('/home',homePageController.homePage);
 router.get('/films/list',filmListPageController.filmListPage);
 router.get('/news/list',newsListPageController.newsListPage);

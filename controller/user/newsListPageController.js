@@ -20,9 +20,11 @@ exports.newsListPage = async (req, res, next) => {
 
     const totalNews = await News.countDocuments(); // Toplam duyuru sayısını alır
     const newsList = await News.find()
+      .sort({ createdAt: -1 }) // Haberleri son eklenenden sıralar
       .skip((perPage * page) - perPage)
-      .limit(perPage);
-
+      .limit(perPage)
+      .exec();
+      
     newsList.forEach(news => {
       news.formattedDate = formatDate(news.createdAt);
     });
